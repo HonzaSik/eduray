@@ -16,6 +16,7 @@ notebooks/*
 *.pdf
 *.hdr
 *.gif
+*.mp4
 preview.*
 
 # Generated assets / animations

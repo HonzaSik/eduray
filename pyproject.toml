@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "eduray"
 version = "0.1.5"
-description = "Educational raytracer implementation in Python with modular architecture. Suports classic raytracing features like shadows, reflections, refractions, and Phong shading. Aimed at students and hobbyists learning computer graphics concepts. Contains visualization tools and example scenes to demonstrate raytracing techniques."
+description = "Educational Python ray tracer with a modular architecture, visualization tools, example scenes, and support for shadows, reflections, refractions, and Blinn-Phong shading."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
@@ -37,20 +37,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-
 notebook = [
     "jupyter>=1.0",
     "ipywidgets>=8.0",
     "matplotlib>=3.8",
 ]
 
-dev = [
-    "pytest>=7.0",
-    "pytest-cov",
-    "mypy",
-]
-
-all = ["raytracer[notebook,dev]"]
+all = ["eduray[notebook]"]
 
 [project.urls]
 Repository = "https://github.com/HonzaSik/eduray"

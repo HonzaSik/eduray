@@ -4,7 +4,8 @@ import numpy as np
 from src import Color
 from src.math.vec3 import Vec3
 
-
+# Simple Radiance HDR/RGBE loader.
+# Format reference: https://www.graphics.cornell.edu/~bjw/rgbe.html
 def hdr_to_ndarray(path: str) -> np.ndarray:
     """
     Reads and transforms an HDR image file to a numpy ndarray of shape (H, W, 3) with float32 RGB values. Handles RLE decoding
@@ -90,7 +91,7 @@ def hdr_to_ndarray(path: str) -> np.ndarray:
                     if not count:
                         raise Exception("Could not read count byte.")
 
-                    # get count value (0-255) and check for num_to_read or literal
+                    # Values above 128 encode repeated runs, otherwise literal values follow.
                     count = count[0]
                     if count > 128:
                         # 128-255 is a num_to_read so we read one value and repeat it count-128 times
@@ -149,6 +150,8 @@ class SkyboxHDR:
         # yaw rotation in radians
         self.yaw = math.radians(yaw_deg)
 
+    # Direction-to-UV mapping for an equirectangular environment map:
+    # u is derived from azimuth, v from elevation.
     def _dir_to_uv(self, direction: Vec3) -> tuple[float, float]:
         """
         Convert a 3D direction vector to UV coordinates on the skybox.
@@ -158,9 +161,9 @@ class SkyboxHDR:
         direction = direction.normalize_ip()
         x, y, z = direction.x, direction.y, direction.z
 
-        # yaw rotation around Y axis to direction vector sy = sin(yaw), cy = cos(yaw)
-        cos_yaw = math.sin(self.yaw)
-        sin_yaw = math.cos(self.yaw)
+        # yaw rotation around Y axis
+        cos_yaw = math.cos(self.yaw)
+        sin_yaw = math.sin(self.yaw)
 
         # rotate direction vector
         x_rotated = cos_yaw * x + sin_yaw * z

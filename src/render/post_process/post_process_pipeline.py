@@ -5,8 +5,7 @@ from src.render.post_process.post_process_config import PostProcessConfig
 
 
 def post_process_pipeline(config: PostProcessConfig, pixels: List[Tuple[int, int, int]], width: int, height: int) -> \
-Tuple[
-    List[Tuple[int, int, int]], int, int]:
+Tuple[List[Tuple[int, int, int]], int, int]:
     """
     Applies post-processing steps to the rendered image based on the configuration.
     """
@@ -20,6 +19,8 @@ Tuple[
             height,
             config.scale_factor,
         )
+
+    # here would be the place to add more post-processing steps like tone mapping, color grading, etc.
 
     return pixels, width, height
 

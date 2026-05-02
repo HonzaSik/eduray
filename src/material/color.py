@@ -260,7 +260,6 @@ class Color:
         skybox: str path or SkyboxHDR instance
         direction: Vec3 | np.ndarray(3,)
         """
-        # lazy import here to avoid cycles #todo fix cycles
         if isinstance(skybox, str):
             from src.scene.skybox import SkyboxHDR
             try:

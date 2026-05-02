@@ -5,9 +5,15 @@ from typing import Any
 from src.scene import Scene
 from src.io.object_libraries import ColorLibrary, LightLibrary, MaterialLibrary
 
+# this file is not used in the current implementation, but it was intended to be a simple way to manage libraries of materials, colors, and lights.
+# I also used it for my internal testing a log way ago, and it might be useful in the future so i do not delete it.
+# The idea was to have a simple way to store and access commonly used colors, materials, and lights by name, and to be able to easily save and load these libraries
+# using the PickleManager. It also provides a convenient way to organize and manage these objects in a larger project and scene setup.
+
 class PickleManager:
     """
-    Manages saving and loading objects using pickle in a specified directory. Supports optional verbose mode (prints actions) and object validation. Can save/load lists or libraries (dicts) of Lights, Materials, and Colors.
+    Manages saving and loading objects using pickle in a specified directory. Supports optional verbose mode (prints actions) and object validation.
+    Can save/load lists or libraries (dicts) of Lights, Materials, and Colors.
     """
 
     def __init__(self, directory: str | Path = "./", verbose: bool = False):

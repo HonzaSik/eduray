@@ -2,7 +2,6 @@ from __future__ import annotations
 import multiprocessing as mp
 from random import random
 from typing import List, Tuple
-
 from src.material.color import Color, to_u8
 from .linear_render_loop import RenderLoop
 

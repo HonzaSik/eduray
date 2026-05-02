@@ -4,7 +4,6 @@ from math import cos, sin, sqrt
 
 Number = float | int
 
-
 @dataclass(slots=True)
 class Vec3:
     """

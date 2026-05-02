@@ -1,7 +1,12 @@
 from pathlib import Path
 from PIL import Image as PILImage
-from IPython.display import Image
 from IPython.display import display, Image as IPImage
+from IPython.display import HTML
+
+
+def _to_byte(value: float) -> int:
+    return max(0, min(255, int(value * 255)))
+
 
 def convert_ppm_to_png(ppm_path: str, png_path: str) -> None:
     """
@@ -10,9 +15,11 @@ def convert_ppm_to_png(ppm_path: str, png_path: str) -> None:
     :param png_path: path to save the PNG file
     :return: None
     """
-    with open(ppm_path, "rb") as ppm_file:
-        img = PILImage.open(ppm_file)
-        img.save(png_path, "PNG")
+    png = Path(png_path)
+    png.parent.mkdir(parents=True, exist_ok=True)
+
+    with PILImage.open(ppm_path) as img:
+        img.save(png, "PNG")
 
 
 def write_ppm(filename, pixels, w, h):
@@ -24,28 +31,36 @@ def write_ppm(filename, pixels, w, h):
     :param h: Height of the image
     :return: None
     """
-    with open(filename, "w", encoding="ascii") as f:
+    path = Path(filename)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open("w", encoding="ascii") as f:
         f.write(f"P3\n{w} {h}\n255\n")
-        for (r, g, b) in pixels:
+        for r, g, b in pixels:
             f.write(f"{r} {g} {b}\n")
+
 
 def image_to_ppm(filename: str, image: tuple[list[tuple[float, float, float]], int, int]) -> Path:
     """
     Write a PPM (P3) image file.
     Colors are stored internally in <0,1> and converted to <0,255>.
     """
+    path = Path(filename)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
     pixels, w, h = image
 
-    with open(filename, "w", encoding="ascii") as f:
+    with path.open("w", encoding="ascii") as f:
         f.write(f"P3\n{w} {h}\n255\n")
         for r, g, b in pixels:
             f.write(
-                f"{max(0, min(255, int(r * 255)))} "
-                f"{max(0, min(255, int(g * 255)))} "
-                f"{max(0, min(255, int(b * 255)))}\n"
+                f"{_to_byte(r)} "
+                f"{_to_byte(g)} "
+                f"{_to_byte(b)}\n"
             )
 
-    return Path(filename)
+    return path
+
 
 def ipynb_display_images(path: str | list[str] | None = None) -> None:
     """
@@ -53,14 +68,15 @@ def ipynb_display_images(path: str | list[str] | None = None) -> None:
     :param path: Path to the image file or list of image file paths.
     :return: None
     """
+    if path is None:
+        raise ValueError("No image path provided for display.")
+
     if isinstance(path, list):
         for p in path:
-            display(Image(filename=p))
-
+            display(IPImage(filename=p))
     else:
-        if path is None:
-            raise ValueError("No image path provided for display.")
-        display(Image(filename=path))
+        display(IPImage(filename=path))
+
 
 def ipynb_display_multiple_images_in_row(paths: list[str], row_size: int = 3) -> None:
     """
@@ -69,25 +85,25 @@ def ipynb_display_multiple_images_in_row(paths: list[str], row_size: int = 3) ->
     :param paths: List of image file paths.
     :return: None
     """
-    from IPython.display import HTML
-
-    img_tags = []
-    for p in paths:
-        img_tags.append(f'<img src="{p}" style="display:inline-block; margin:5px; max-height:200px;">')
+    img_tags = [
+        f'<img src="{Path(p).as_posix()}" style="display:inline-block; margin:5px; max-height:200px;">'
+        for p in paths
+    ]
 
     html_content = ""
     for i in range(0, len(img_tags), row_size):
         row_imgs = img_tags[i:i + row_size]
-        html_content += '<div style="white-space: nowrap;">' + ''.join(row_imgs) + '</div>'
+        html_content += '<div style="white-space: nowrap;">' + "".join(row_imgs) + "</div>"
 
     display(HTML(html_content))
+
 
 class ImageResult:
     def __init__(self, png_path: str):
         self.path = png_path
 
     def display(self):
-        display(IPImage(self.path))
+        display(IPImage(filename=self.path))
         return self
 
     def display_in_row(self, row_size: int = 3):
@@ -110,6 +126,8 @@ def image_pipeline(image, idx: int = 0) -> ImageResult:
     """
     ppm = f"./images/img_{idx}.ppm"
     png = f"./images/img_{idx}.png"
+
     image_to_ppm(ppm, image)
     convert_ppm_to_png(ppm, png)
+
     return ImageResult(png)

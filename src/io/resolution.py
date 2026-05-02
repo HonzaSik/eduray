@@ -84,6 +84,7 @@ class Resolution(Enum):
     UW_4K = (5120, 2160)  # Ultrawide 4K
 
     MY_PRINT_2_1 = (1400, 700)
+    EXTRA_SMALL_ANIMATION = (64, 48)
 
 
     def __iter__(self):

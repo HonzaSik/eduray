@@ -212,11 +212,25 @@ class Animator:
             ease=ease,
         )
 
-        mp4_path = frames_to_mp4(
-            frames,
-            output_path,
-            fps=self.animation_fps
-        )
+        try:
+            mp4_path = frames_to_mp4(
+                frames,
+                output_path,
+                fps=self.animation_fps
+            )
+        except ValueError as exc:
+            raise RuntimeError(
+                "\nMP4 export failed.\n\n"
+                "PNG frames were created successfully, but the MP4 export step failed.\n\n"
+                "Possible causes include a missing or unavailable video backend, "
+                "an FFmpeg/plugin configuration problem, or an unsupported codec.\n\n"
+                "If needed, install the optional dependency:\n"
+                "    pip install imageio-ffmpeg\n\n"
+                f"Generated frames are stored in:\n"
+                f"    {frames_folder.resolve()}\n\n"
+                "Note: This dependency is optional and is not installed by default, "
+                "because users who only render still images do not need video export."
+            ) from exc
 
         print(
             f"----------------------- Animation MP4 saved to: {mp4_path.resolve()} -------------------------------"

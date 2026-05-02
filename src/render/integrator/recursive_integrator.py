@@ -26,9 +26,9 @@ class RecursiveIntegrator(Integrator):
 
     def cast_ray(self, ray: Ray, depth: int | None = None) -> Color:
         """
-        Cast a ray into the scene and compute the color seen along that ray, accounting for local shading, reflections, and refractions up to a maximum recursion depth.
+        Cast a ray into the scene and compute the resulting color, including local shading and recursive reflections/refractions. Whitted style ray tracing.
         :param ray: The ray to cast into the scene.
-        :param depth: Depth called internaly to limit recursion. If None, it will use the max_depth defined in the integrator, so camera rays will start with depth=None, and recursive calls will increment the depth until it reaches max_depth.
+        :param depth: The remaining recursion depth for reflections/refractions. If None, uses the integrator's max_depth.
         :return:
         """
 
@@ -83,7 +83,7 @@ class RecursiveIntegrator(Integrator):
     @staticmethod
     def _get_normals(hit: SurfaceInteraction, material: Material) -> tuple[Vector, Vector]:
         # geometric normal are real surface normals used for ray offsetting
-        # shading normal may be perturbed by a normal-noise map
+        # shading normal may be perturbed
         n_geom = hit.geom.normal.normalize()
         if hasattr(material, "normal_noise"):
             n_shade = apply_noise_normal_perturbation(hit, material.normal_noise, n_geom)

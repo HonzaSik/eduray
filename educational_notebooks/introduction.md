@@ -1,18 +1,21 @@
-# introduction to series of notebooks
+# Introduction to the notebook series
 
 ---
 
-In this series of notebooks, we will explore ray-tracing from scratch to building a simple Whited style ray-tracer. We will start with the basics of ray-tracing, including how camera works, how to generate rays, and how to intersect rays with objects. We will then move on to more advanced topics such as shading, lighting, and materials. Finally, we will build a simple ray-tracer that can render a scene with mathematicly defined objects and materials using the techniques we have learned and introducing some more advanced techniques like normal perturbation and procedural textures.
-Some things are simplified and not physicly accurate, but the goal is to understand the basic principles pipeline of ray-tracing and how to implement it in code.
+In this series of notebooks, we will explore ray tracing step by step, starting from the basic principles and gradually building a simple Whitted-style ray tracer.
 
-Whrough the series try to experiment with the code and try to implement your own features because that is the best way to learn and understand the concepts and yupiter notebooks are great for that.
+We will begin with the fundamentals: how a camera works, how primary rays are generated, and how rays intersect objects in a scene. After that, we will move on to shading, lighting, materials, reflections, refractions, and other core parts of the rendering pipeline. Finally, we will combine these ideas into a simple ray tracer capable of rendering scenes made from mathematically defined objects and materials. The later notebooks also introduce more advanced educational topics, such as normal perturbation and procedural textures.
 
-Some thinks to keep in mind:
-- We will be using Python for the implementation, but the concepts can be applied to any programming language.
-- In the notebooks, we will be using pickle to save and load things we already created. Theese pickle files should not be added by me to the repository because the security of theese files cannot be guaranteed and you will need to generate them yourself by running the code in the notebooks. If you want to share your generated files with others, you can do so by sharing the code that generates them instead of sharing the pickle files directly.
-- The code in the notebooks is not optimized for performance, but rather for clarity and understanding of the concepts. The goal is to understand how ray-tracing works and how to implement it, not to create a fast ray-tracer.
+Some parts of the implementation are intentionally simplified and are not physically accurate. The goal of this series is not to build a production renderer, but to understand the basic ray-tracing pipeline and learn how its main components can be implemented in code.
 
-## Cheat sheet for the series how to use this library:
+While going through the notebooks, try to experiment with the code and modify it. Implementing your own small features, changing parameters, and testing different scenes is one of the best ways to understand the concepts. Jupyter notebooks are especially useful for this because they allow you to run, inspect, and modify individual parts of the rendering process interactively.
+
+Some things to keep in mind:
+
+- Python is used for the implementation, but the main concepts can be applied in other programming languages as well.
+- The code in the notebooks is written mainly for clarity and educational value, not for performance. The goal is to understand how ray tracing works and how its main parts fit together, not to create a highly optimized renderer.
+
+## Cheat sheet: how to use this library
 
 #### Importing from the library:
 - `from src import *` to import all the necessary classes and functions.
@@ -98,4 +101,7 @@ Available progress display modes.
 Example:
 
 ```python
-ProgressDisplay.TQDM_IMAGE_PREVIEW
+preview_config=PreviewConfig(
+    progress_display=ProgressDisplay.TQDM_IMAGE_PREVIEW
+)
+```

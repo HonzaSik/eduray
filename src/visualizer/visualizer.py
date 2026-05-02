@@ -300,7 +300,7 @@ class Visualizer:
                                              camera: 'Camera',
                                              arrow_length=1,
                                              show_frustum=True,
-                                             frustum_depth=2.0,
+                                             frustum_depth=4.0,
                                              show_camera_orientation=True,
                                              show_plane=False,
                                              show_plane_corners=False

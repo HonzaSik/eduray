@@ -3,6 +3,11 @@ from src.material.color import Color
 from src.scene.light import Light, LightType
 from src.material.material.material import Material
 
+# this file is not used in the current implementation, but it was intended to be a simple way to manage libraries of materials, colors, and lights.
+# I also used it for my internal testing a log way ago, and it might be useful in the future so i do not delete it.
+# The idea was to have a simple way to store and access commonly used colors, materials, and lights by name, and to be able to easily save and load these libraries
+# using the PickleManager. It also provides a convenient way to organize and manage these objects in a larger project and scene setup.
+
 @dataclass
 class ColorLibrary:
     """Simple library wrapper so you can access colors as attributes."""
