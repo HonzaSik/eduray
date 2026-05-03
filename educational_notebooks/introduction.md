@@ -15,6 +15,21 @@ Some things to keep in mind:
 - Python is used for the implementation, but the main concepts can be applied in other programming languages as well.
 - The code in the notebooks is written mainly for clarity and educational value, not for performance. The goal is to understand how ray tracing works and how its main parts fit together, not to create a highly optimized renderer.
 
+
+## Notebooks in this series
+
+1. **Data and visualizer** — color, image, coordinate system
+2. **Camera and render loop** — pinhole camera, ray generation, traversal
+3. **Intersections and geometry** — sphere, plane, transformations, implicit surfaces
+4. **Materials, shaders and lights** — Phong, Blinn–Phong, ambient/diffuse/specular
+5. **Integrators - recursion, refraction, reflection** — Whitted-style ray tracing, Fresnel, Snell's law, recursive ray tracing
+6. **Noise and procedural textures** — Perlin, fBM, turbulence, normal perturbation, procedural patterns
+7. **Final scene** — Sandbox scene with various objects, materials, and lights to not start from scratch.
+8. **Bonus: Other** — In folder other are notebooks showcasing some additional features like post processing and video rendering using EduRay.
+
+Notebooks build on each other and are intended to be read in order.
+
+---
 ## Cheat sheet: how to use this library
 
 #### Importing from the library:

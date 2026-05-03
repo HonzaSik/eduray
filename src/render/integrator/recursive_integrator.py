@@ -61,15 +61,15 @@ class RecursiveIntegrator(Integrator):
             reflected_ray = self._reflection_ray(ray, hit, n_geom, n_shade)
             reflected_color = self.cast_ray(reflected_ray, depth - 1)
 
-            kr = self._fresnel(ray, n_shade, material)
+            f = self._fresnel(ray, n_shade, material)
             refracted_ray = self._refraction_ray(ray, hit, n_geom, n_shade, material)
 
             if refracted_ray is None:
                 result += reflected_color * transparency
             else:
                 refracted_color = self.cast_ray(refracted_ray, depth - 1)
-                result += reflected_color * (transparency * kr)
-                result += refracted_color * (transparency * (1.0 - kr))
+                result += reflected_color * (transparency * f)
+                result += refracted_color * (transparency * (1.0 - f))
 
             return result
 

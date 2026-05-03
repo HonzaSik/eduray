@@ -33,24 +33,10 @@ EduRay is an educational ray tracer implemented in Python. It is designed to be 
 
 The project focuses on clarity rather than performance. It includes the source code of the ray tracer, visualization tools, example scenes, and educational Jupyter notebooks.
 
-### Jupyter Notebooks
-
-A series of educational Jupyter notebooks is available in the `educational_notebooks` directory.
-
-The notebooks explain selected ray tracing concepts step by step, including:
-
-- camera construction
-- ray-object intersections
-- shading
-- rendering
-- reflections and refractions
-- procedural texturing
-- visualization of ray tracing concepts
-
 ---
-### Installation
+# Installation and setup
 
-You can install the package from PyPI without the notebooks:
+You can install the package from PyPI without the notebooks as rendering and visualization software:
 
 ```bash
 pip install eduray
@@ -69,19 +55,80 @@ source .venv/bin/activate
 # Windows
 .venv\Scripts\activate
 
+# Option A: Library only — for use in IDEs like PyCharm or VS Code
 pip install -e .
+
+# Option B: Library + Jupyter — for running educational notebooks in the browser
+pip install -e ".[all]"
 ```
 
-To run the educational notebooks, you can either install Jupyter and launch it from the terminal:
+To run the educational notebooks in your browser, start a Jupyter server in the project directory:
 
 ```bash
-pip install jupyter
 jupyter notebook
 ```
 
 Or open the notebooks directly in an IDE with Jupyter support, such as VS Code or PyCharm.
 
-Then open `educational_notebooks/01_data_visualizer.ipynb` to start with the first lesson. The notebooks are numbered and meant to be followed in order.
+Then open `educational_notebooks/1_data_visualizer.ipynb` to start with the first lesson. The notebooks are numbered and meant to be followed in order.
 
 > **Note**
-> The project requires Python 3.13 or newer.
+> The project was developed and tested on Python 3.13. Requires Python 3.11 or newer.
+
+---
+
+# Quick start
+
+The smallest working example:
+
+```python
+from src import *
+
+sphere = Object(
+    geometry=Sphere(),
+    material=PhongMaterial()
+)
+
+scene = Scene(
+    camera=PinholeCamera(),
+    objects=[sphere],
+    lights=[PointLight()],
+)
+
+rt = LinearRenderLoop(scene=scene)
+rt.render("hello_world.png")
+```
+
+To try the library, open the [Hello World](hello_world.ipynb) notebook. It demonstrates how to set up a minimal scene and render an image using only a few lines of code.
+
+```bash
+jupyter notebook ./hello_world.ipynb
+```
+
+---
+# Educational notebooks series
+
+A series of educational Jupyter notebooks is available in the `educational_notebooks` directory.
+
+The notebooks explain selected ray tracing concepts step by step, including:
+
+- camera construction
+- ray-object intersections
+- shading
+- rendering
+- reflections and refractions
+- procedural texturing
+- visualization of ray tracing concepts
+
+More detailed description of the notebooks can be found in the [introduction notebook](educational_notebooks/introduction.md).
+
+---
+
+## For those who want to experiment
+
+1. Click "Fork" on https://github.com/HonzaSik/eduray
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/eduray.git
+   ```
+3. continue with the editable install steps from the [Installation](#installation-and-setup) section above.

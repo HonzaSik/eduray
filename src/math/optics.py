@@ -13,14 +13,15 @@ def reflect(v: Vector, n: Vector) -> Vector:
 
 def refract(v: Vector, n: Vector, ior_out: float, ior_in: float) -> Vector | None:
     """
-    Refract vector v through surface with normal n using Snell's law.
-    :param v: incoming vector
-    :param n: normal vector at intersection (must be normalized)
-    :param ior_out: index of refraction of the medium ray is exiting
-    :param ior_in: index of refraction of the medium ray is entering
-    :return: refracted vector or None if total internal reflection occurs
+    Compute the refracted direction using Snell's law.
+
+    :param v: incident ray direction, pointing toward the surface
+    :param n: outward surface normal at the intersection point
+    :param ior_out: index of refraction outside the object, usually air
+    :param ior_in: index of refraction inside the object/material
+    :return: refracted direction, or None if total internal reflection occurs
     """
-    v = v.normalize_ip()
+    v = v.normalize_ip() # in place normalization to avoid creating new Vector instances for faser math
     n = n.normalize_ip()
 
     eta = ior_out / ior_in  # ratio of indices

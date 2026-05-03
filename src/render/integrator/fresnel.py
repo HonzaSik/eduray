@@ -4,10 +4,10 @@ from src.math.helpers import clamp_float_01
 def fresnel_schlick(ray_dir: Vector, normal: Vector, ior_out: float = 1.0, ior_in: float = 1.5) -> float:
     """
     Schlick's approximation for Fresnel reflectance.
-    ray_dir  ... směr paprsku ve směru letu
-    normal   ... geometrická normála směřující ven z povrchu
-    ior_out  ... index lomu prostředí, ze kterého paprsek přichází
-    ior_in   ... index lomu prostředí, do kterého paprsek vstupuje
+    ray_dir - direction of the incoming ray (should be normalized)
+    normal - surface normal at the hit point (should be normalized)
+    ior_out - index of refraction of the medium the ray is coming from (default is 1.0 for air)
+    ior_in - index of refraction of the medium the ray is entering (default is 1.5 for glass)
     """
     d = ray_dir.normalize()
     n = normal.normalize()

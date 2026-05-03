@@ -50,5 +50,5 @@ Repository = "https://github.com/HonzaSik/eduray"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src*"]
+include = ["src", "src.*"]
 exclude = ["tests*", "notebooks*", "renders*", "examples*", "educational_notebooks*"]

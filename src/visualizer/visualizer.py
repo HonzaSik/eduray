@@ -56,7 +56,7 @@ def _calculate_base_corners(camera: Camera):
 @dataclass
 class Visualizer:
     """
-    Data visualizer for iupyter notebooks. Provides methods to visualize various data types such as axes, rays, geometry hits, etc. in a 3D plot.
+    Data visualizer for Jupyter Notebooks. Provides methods to visualize various data types such as axes, rays, geometry hits, etc. in a 3D plot.
     """
     ax : Axes = field(default_factory=lambda: None)
     plot : plt = field(default_factory=lambda: plt)
