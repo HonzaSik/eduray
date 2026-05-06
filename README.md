@@ -28,6 +28,12 @@
 </p>
 
 ---
+<p align="center">
+  <img src="examples/demo_scene.png" alt="Scene" width="600">
+</p>
+
+> *Rendered image of the demo scene included in the educational notebooks series.*
+---
 
 EduRay is an educational ray tracer implemented in Python. It is designed to be simple, readable, and modular, making it suitable for learning the fundamentals of ray tracing and computer graphics.
 
@@ -47,7 +53,7 @@ Or clone the repository to use the educational notebooks and install the package
 ```bash
 git clone https://github.com/HonzaSik/eduray.git
 cd eduray
-python3 -m venv .venv
+python3.13 -m venv .venv
 
 # macOS/Linux
 source .venv/bin/activate
@@ -82,7 +88,7 @@ Then open `educational_notebooks/1_data_visualizer.ipynb` to start with the firs
 The smallest working example:
 
 ```python
-from src import *
+from eduray import *
 
 sphere = Object(
     geometry=Sphere(),
@@ -131,4 +137,4 @@ More detailed description of the notebooks can be found in the [introduction not
    ```bash
    git clone https://github.com/YOUR_USERNAME/eduray.git
    ```
-3. continue with the editable install steps from the [Installation](#installation-and-setup) section above.
+3. Continue with the editable install steps from the [Installation](#installation-and-setup) section above.

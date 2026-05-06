@@ -1,1 +1,0 @@
-# here will be the methods for the animation like object manipulation, camera manipulation, light manipulation, etc.

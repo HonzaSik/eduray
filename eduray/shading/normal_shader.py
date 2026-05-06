@@ -1,0 +1,38 @@
+from .local_shading import LocalShading, apply_noise_normal_perturbation
+from eduray.scene.surface_interaction import SurfaceInteraction
+from eduray.scene.light import Light
+from eduray.material.color import Color
+from eduray.math import Vector
+from dataclasses import dataclass
+from eduray.scene.scene import Scene
+
+
+@dataclass
+class NormalShader(LocalShading):
+    """
+    Simple object shader for previewing normals.
+    """
+
+    def shade(self, hit: SurfaceInteraction, light: Light | None, view_dir: Vector,
+              scene: Scene | None = None) -> Color:
+        """
+        Shade based on the normal vector at the hit point.
+        """
+        material = hit.material
+        n = hit.normal.normalize()
+
+        noise = getattr(material, "normal_noise", None)
+        norm = apply_noise_normal_perturbation(hit, noise, n)
+
+        red = (norm.x + 1) * 0.5
+        green = (norm.y + 1) * 0.5
+        blue = (norm.z + 1) * 0.5
+
+        return Color.linear_rgb(red, green, blue)
+
+    def shade_multiple_lights(self, hit: SurfaceInteraction, lights: list[Light], view_dir: Vector,
+                              scene: Scene | None = None) -> Color:
+        """
+        Shade ignoring multiple lights; normals are independent of lighting.
+        """
+        return self.shade(hit=hit, light=None, view_dir=view_dir)

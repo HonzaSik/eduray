@@ -33,8 +33,8 @@ Notebooks build on each other and are intended to be read in order.
 ## Cheat sheet: how to use this library
 
 #### Importing from the library:
-- `from src import *` to import all the necessary classes and functions.
-- `from src.internals import *` to import the internals
+- `from eduray import *` to import all the necessary classes and functions or better
+- `from eduray.internals import *` to import the internals
 
 ---
 # Configuration Classes

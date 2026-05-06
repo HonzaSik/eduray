@@ -15,7 +15,7 @@ authors = [
     { name = "Jan Šik"}
 ]
 
-keywords = ["raytracing", "rendering", "computer-graphics", "phong", "shadows", "reflections", "refractions", "education", "python", "modular-architecture", "visualization", "numpy", "pillow", "tqdm", "jupyter", "ipywidgets", "matplotlib"]
+keywords = ["raytracing", "rendering", "computer-graphics", "phong", "blinn phong", "shadows", "reflections", "refractions", "education", "python", "modular architecture", "visualization", "numpy", "pillow", "tqdm", "jupyter", "ipywidgets", "matplotlib", "eduray"]
 
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -23,6 +23,7 @@ classifiers = [
     "Topic :: Multimedia :: Graphics :: 3D Rendering",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 
@@ -50,5 +51,5 @@ Repository = "https://github.com/HonzaSik/eduray"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src", "src.*"]
+include = ["eduray", "eduray.*"]
 exclude = ["tests*", "notebooks*", "renders*", "examples*", "educational_notebooks*"]

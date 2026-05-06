@@ -1,0 +1,2 @@
+# here will be the methods for the animation like object manipulation, camera manipulation, light manipulation, etc.
+# Object manipulation methods will be used to change the position, rotation, scale of objects using their matrix transformations.
