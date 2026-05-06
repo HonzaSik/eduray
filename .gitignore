@@ -40,7 +40,7 @@ notebooks/skybox/my_skyboxes/*
 notebooks/benchmark_data/
 notebooks/benchmark_data/*
 
-examples/demo_scene.png
+!examples/demo_scene.png
 
 stls/
 
