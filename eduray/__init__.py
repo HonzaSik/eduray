@@ -1,6 +1,6 @@
-# Usage: from src import *  # Import all public classes and functions from the src package
+# Usage: from eduray import *  # Import all public classes and functions from the src package
 # For internal use, you can also import
-# src.internals to access additional utilities and classes that are not part of the public API but can be useful for experimentation and extending the library for educational purposes.
+# eduray.internals to access additional utilities and classes that are not part of the public API but can be useful for experimentation and extending the library for educational purposes.
 
 # Geometry primitives
 from .geometry import (

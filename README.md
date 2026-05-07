@@ -69,12 +69,6 @@ pip install -e .
 pip install -e ".[all]"
 ```
 
-- **PyCharm**: `Settings → Project → Python Interpreter → Add Interpreter
-  → Add Local → Virtualenv → Existing`, then select
-  `<repo>/.venv/bin/python` (macOS/Linux) or `<repo>\.venv\Scripts\python.exe` (Windows).
-- **VS Code**: `Cmd/Ctrl+Shift+P → Python: Select Interpreter`, pick the
-  `.venv` from this project.
-
 To run the educational notebooks in your browser, start a Jupyter server in the project directory:
 
 ```bash
@@ -95,12 +89,12 @@ Then open `educational_notebooks/1_data_visualizer.ipynb` to start with the firs
 The smallest working example:
 
 ```python
-from eduray import *
+from eduray import Object, Sphere, PhongMaterial, Scene, PinholeCamera, PointLight, LinearRenderLoop
 
 sphere = Object(
     geometry=Sphere(),
     material=PhongMaterial()
-)
+).translate(0, 0, -5)
 
 scene = Scene(
     camera=PinholeCamera(),
