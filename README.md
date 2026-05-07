@@ -28,12 +28,6 @@
 </p>
 
 ---
-<p align="center">
-  <img src="examples/demo_scene.png" alt="Scene" width="600">
-</p>
-
-> *Rendered image of the demo scene included in the educational notebooks series.*
----
 
 EduRay is an educational ray tracer implemented in Python. It is designed to be simple, readable, and modular, making it suitable for learning the fundamentals of ray tracing and computer graphics.
 
@@ -94,7 +88,7 @@ from eduray import Object, Sphere, PhongMaterial, Scene, PinholeCamera, PointLig
 sphere = Object(
     geometry=Sphere(),
     material=PhongMaterial()
-).translate(0, 0, -5)
+).translate(0, 0, -2)
 
 scene = Scene(
     camera=PinholeCamera(),
