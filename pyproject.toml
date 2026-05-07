@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "eduray"
-version = "0.1.5"
+version = "0.2.1"
 description = "Educational Python ray tracer with a modular architecture, visualization tools, example scenes, and support for shadows, reflections, refractions, and Blinn-Phong shading."
 readme = "README.md"
 license = "MIT"
