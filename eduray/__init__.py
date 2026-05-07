@@ -50,7 +50,7 @@ from .io import (
 )
 
 __all__ = [
-    # Geometry primitive classes
+    # Geometry
     "Sphere", "Plane", "Box", "Torus", "Triangle", "Square", "Primitive", "Cylinder",
     # Math
     "Vertex", "Vector",

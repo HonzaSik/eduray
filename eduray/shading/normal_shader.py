@@ -6,7 +6,6 @@ from eduray.math import Vector
 from dataclasses import dataclass
 from eduray.scene.scene import Scene
 
-
 @dataclass
 class NormalShader(LocalShading):
     """

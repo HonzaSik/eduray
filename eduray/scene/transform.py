@@ -125,7 +125,7 @@ class Transform:
     def combine(self, other: Transform) -> Transform:
         """
         Apply another transformation on top of this one by matrix multiplication.
-        The resulting transformation is equivalent to first applying 'self'
+        The resulting transformation is equivalent to first applying 'other' and then 'self'.
         and then 'other'.
         """
         matrix = other.matrix @ self.matrix
@@ -139,6 +139,6 @@ def transform_normal(matrix_inv_T: np.ndarray, n: Vector) -> Vector:
     This is necessary to ensure that the normal remains perpendicular to the surface after transformations that include non-uniform scaling.
     """
 
-    v = np.array([n.x, n.y, n.z, 0.0], dtype=float)  # w=0 for direction
+    v = np.array([n.x, n.y, n.z, 0.0], dtype=float)
     r = matrix_inv_T @ v
     return Vector(float(r[0]), float(r[1]), float(r[2])).normalize()

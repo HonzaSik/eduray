@@ -1,6 +1,7 @@
 from typing import List, Tuple
 from PIL import Image
 import numpy as np
+from PIL.Image import Resampling
 from eduray.render.post_process.post_process_config import PostProcessConfig
 
 
@@ -51,7 +52,7 @@ def _upscale_image(
     # Resampling.LANCZOS,
     # Resampling.BOX,
     # Resampling.HAMMING,
-    scaled_pixels = img.resize((scale_factor * width, scale_factor * height), resample=Image.BICUBIC)
+    scaled_pixels = img.resize((scale_factor * width, scale_factor * height), resample=Resampling.BICUBIC)
 
     # convert back
     scaled_array = np.asarray(scaled_pixels, dtype=np.uint8)

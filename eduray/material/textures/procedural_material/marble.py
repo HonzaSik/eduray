@@ -6,7 +6,8 @@ from eduray.material.textures.noise.noise import Noise
 from eduray.material.textures.noise.perlin_noise import PerlinNoise
 from eduray.math import Vector
 
-# related procedural texturing concepts are discussed in Ebert et al. (2003).
+# Marble texture based on the classical procedural approach
+# related procedural texturing concepts are discussed in Ebert et al. (2003). TEXTURING & MODELING A Procedural Approach
 
 @dataclass
 class MarbleMaterial(PhongMaterial):

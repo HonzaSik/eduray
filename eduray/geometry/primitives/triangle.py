@@ -5,6 +5,9 @@ from eduray.geometry.primitive import Primitive
 from eduray.geometry.ray import Ray
 from eduray.geometry.geometry_hit import GeometryHit
 
+# Möller, T. & Trumbore, B. (1997). "Fast, Minimum Storage Ray-Triangle Intersection".
+# Journal of Graphics Tools, 2(1), 21–28.
+
 @dataclass
 class Triangle(Primitive):
     """

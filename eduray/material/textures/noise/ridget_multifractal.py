@@ -4,7 +4,7 @@ from eduray.material.textures.noise.noise import Noise
 from eduray.material.textures.noise.perlin_noise import PerlinNoise
 
 # Related procedural texturing and noise-combination concepts are discussed
-# in Ebert et al. (2003).
+# in Ebert et al. (2003). TEXTURING & MODELING A Procedural Approach
 
 @dataclass
 class RidgeNoise(Noise):

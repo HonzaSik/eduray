@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from eduray.geometry.geometry_hit import GeometryHit
 from eduray.material.material.material import Material
 
-
 @dataclass
 class SurfaceInteraction:
     geom: GeometryHit

@@ -5,6 +5,7 @@ from typing import Tuple, List
 from eduray import Color
 import matplotlib.colors as mcol
 import random
+
 random.seed(42)  # for reproducibility
 
 black = Color.linear_rgb(0.0, 0.0, 0.0)

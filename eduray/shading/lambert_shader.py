@@ -7,7 +7,6 @@ from eduray.scene.scene import Scene
 from eduray.math import Vector
 from .local_shading import LocalShading
 
-
 class LambertShader(LocalShading):
     def shade(
         self,
@@ -32,8 +31,7 @@ class LambertShader(LocalShading):
         view_dir: Vector,
         scene: Scene | None = None
     ) -> Color:
-        material = hit.material
-        color = material.get_color()
+        color = Color.custom_rgb(0, 0, 0)
 
         for light in lights:
             color += self.shade(hit, light, view_dir, scene)

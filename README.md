@@ -138,3 +138,5 @@ More detailed description of the notebooks can be found in the [introduction not
    git clone https://github.com/YOUR_USERNAME/eduray.git
    ```
 3. Continue with the editable install steps from the [Installation](#installation-and-setup) section above.
+
+---

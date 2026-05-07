@@ -9,13 +9,11 @@ from eduray.scene.surface_interaction import SurfaceInteraction
 from eduray.scene.light import Light
 from eduray.math import Vector
 
-
 def apply_noise_normal_perturbation(
     hit: SurfaceInteraction,
     noise: Noise | None,
     vec: Vector
 ) -> Vector:
-    noise = noise
     if noise is None:
         return vec
 

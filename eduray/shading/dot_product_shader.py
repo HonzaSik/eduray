@@ -7,7 +7,6 @@ from eduray.math import Vector
 import math
 from eduray.scene.scene import Scene
 
-
 @dataclass
 class DotProductShader(LocalShading):
     """

@@ -16,7 +16,6 @@ class Scene:
     objects: list[Object] = field(default_factory=list)
     skybox: str | None = None # path to skybox texture HDR or "black", "white", or "sky" for built-in options
 
-
     def __str__(self) -> str:
         return f"Scene(camera={self.camera}, lights={self.lights}, primitives={self.objects}, skybox={self.skybox})"
 
@@ -147,7 +146,6 @@ class Scene:
         self.camera = camera
 
     # -------- camera manipulation methods --------
-
     def translate_camera(self, translation: Vector) -> None:
         """
         Translate the camera by a given vector.

@@ -4,7 +4,6 @@ from eduray.scene.scene import Scene
 from eduray.scene import SurfaceInteraction, Light
 from eduray.shading import LocalShading
 
-
 class ColorShader(LocalShading):
     """
     A simple shader that returns the base color of the material without any lighting calculations. This can be useful for debugging or for rendering objects with a flat color.

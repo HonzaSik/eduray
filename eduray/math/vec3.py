@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from math import cos, sin, sqrt
+from typing import Self
 
 Number = float | int
 
@@ -29,19 +30,14 @@ class Vec3:
         return self.z
 
     # basic ops (return new objects)
-    def __neg__(self) -> Vec3:
-        return Vec3(-self.x, -self.y, -self.z)
+    def __neg__(self) -> Self:
+        return type(self)(-self.x, -self.y, -self.z) #  (self) allows subclassing Vec3 and returning the correct type
 
     def __add__(self, o: Vec3) -> Vec3:
         return Vec3(self.x + o.x, self.y + o.y, self.z + o.z)
 
     def __sub__(self, o: Vec3) -> Vec3:
         return Vec3(self.x - o.x, self.y - o.y, self.z - o.z)
-
-    def __mul__(self, s: Number) -> Vec3:
-        return Vec3(self.x * s, self.y * s, self.z * s)
-
-    __rmul__ = __mul__
 
     def __truediv__(self, s: Number) -> Vec3:
         inv = 1.0 / float(s)
@@ -97,7 +93,7 @@ class Vec3:
         1,0,0 -> 1,0,0
         1,1,1 -> 0.577,0.577,0.577
         10,0,0 -> 1,0,0
-        :return:
+        :return: normalized Vec3
         """
         n2 = self.x * self.x + self.y * self.y + self.z * self.z
         if n2 == 0.0: return Vec3(0.0, 0.0, 0.0)
@@ -168,6 +164,8 @@ class Vec3:
             return Vec3(self.x * o, self.y * o, self.z * o)
         if isinstance(o, Vec3):
             return Vec3(self.x * o.x, self.y * o.y, self.z * o.z)
+
+    __rmul__ = __mul__
 
     def rotate_around_axis(self, axis: Vec3, angle_rad: float) -> Vec3:
         """

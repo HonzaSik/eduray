@@ -1,6 +1,10 @@
 from typing import Callable
 from enum import Enum
 
+# Normalized quadratic ease-in-out based on Robert Penner's easing equations.
+# Equivalent to easeInOutQuad with b=0, c=1, d=1.
+# (http://robertpenner.com/easing/)
+# you can also implement other easing functions like easeInQuad, easeOutQuad, easeInCubic, etc. based on the same principles.
 
 # enum of ease types
 class EaseType(Enum):

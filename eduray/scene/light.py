@@ -79,6 +79,7 @@ class PointLight(Light):
     def get_color_at(self, point: Vertex) -> Color:
         return self.color
 
+
 @dataclass
 class PointLightFalloff(Light):
     """
@@ -97,6 +98,7 @@ class PointLightFalloff(Light):
     def get_color_at(self, point: Vertex) -> Color:
         return self.color
 
+
 @dataclass
 class AmbientLight(Light):
     """
@@ -112,6 +114,7 @@ class AmbientLight(Light):
     def get_color_at(self, point: Vertex) -> Color:
         return self.color
 
+
 @dataclass
 class DirectionalLight(Light):
     """
@@ -126,6 +129,7 @@ class DirectionalLight(Light):
 
     def get_color_at(self, point: Vertex) -> Color:
         return self.color
+
 
 @dataclass
 class SpotLight(Light):

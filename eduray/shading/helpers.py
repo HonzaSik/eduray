@@ -6,6 +6,7 @@ from eduray.scene.light import Light
 
 _BIAS = 1e-3
 
+# this will be moved to math later
 def tangent_basis(vec: Vector) -> tuple[Vector, Vector]:
     """
     Create a tangent basis (T, B) given a normal vector (vec).

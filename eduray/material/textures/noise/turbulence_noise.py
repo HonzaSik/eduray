@@ -4,8 +4,7 @@ from eduray.material.textures.noise.perlin_noise import PerlinNoise
 from eduray.math.vertex import Vertex
 from eduray.math.vector import Vector
 
-# Related procedural texturing concepts are discussed in Ebert et al. (2003).
-
+# Related procedural texturing concepts are discussed in Ebert et al. (2003). TEXTURING & MODELING A Procedural Approach
 @dataclass
 class TurbulenceNoise(Noise):
     """

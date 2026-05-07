@@ -54,7 +54,6 @@ from .math import (
     clamp_float_01, interpolate, perlin_fade, lerp
 )
 
-
 __all__ = [
     "Vec3",
     "SurfaceInteraction", "Light", "LightType",

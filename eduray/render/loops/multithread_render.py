@@ -75,7 +75,7 @@ class MultiProcessRowRenderLoop(RenderLoop):
 
         pixels_u8: List[Tuple[int, int, int]] = [None] * (width * height)  # type: ignore
 
-        chunksize = max(1, height // (n_cores * 4))
+        chunksize = max(1, height // (n_cores * 4)) # increased chunksize to reduce overhead of task distribution, especially for smaller images.
 
         with ctx.Pool(
             processes=n_cores,

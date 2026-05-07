@@ -12,6 +12,8 @@ random.shuffle(perm)
 # Educational implementation following the common structure of improved
 # Perlin noise: permutation table, gradient hashing, fade function,
 # and interpolation between cube corners. See Perlin (2002).
+# This Perlin noise implementation is based on Perlin's reference C code:
+# https://mrl.cs.nyu.edu/~perlin/noise/
 def _grad(h: int, x: float, y: float, z: float) -> float:
     # reduce h to 4 bits - 16 values
     h &= 15

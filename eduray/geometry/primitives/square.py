@@ -54,6 +54,7 @@ class Square(Primitive):
             return hit1 if hit1.dist < hit2.dist else hit2
         return hit1 or hit2
 
+    # for later implementation of area light source sampling.
     def random_point(self) -> Vertex:
         u = random.uniform(0, 1)
         v = random.uniform(0, 1)

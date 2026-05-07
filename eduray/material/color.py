@@ -251,6 +251,7 @@ class Color:
             direction = direction / normal
 
         y_axis = 0.5 * (direction[1] + 1.0)
+        # Blue-to-white sky gradient adapted from Shirley, "Ray Tracing in One Weekend"
         color = (1.0 - y_axis) * cls.custom_rgb(255, 255, 255) + y_axis * cls.custom_rgb(100, 100, 255)
         return color
 

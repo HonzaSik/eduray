@@ -21,6 +21,8 @@ class VoronoiNoise(Noise):
 
     def _hash(self, ix, iy, iz):
         # simple deterministic hash
+        # Hash constants are the Shadertoy/Quilez shader-hash trick
+        # (see e.g. https://www.shadertoy.com/view/4djSRW)
         return (
             math.sin(ix * 127.1 + iy * 311.7 + iz * 74.7) * 43758.5453
         ) % 1.0

@@ -15,6 +15,9 @@ from eduray.geometry.ray import Ray
 from eduray.scene.surface_interaction import SurfaceInteraction
 from eduray.shading.helpers import light_dir_dist
 
+# NOTE: This single file grew during development and is intentionally kept
+# as one module for now. It is planned to be split into smaller modules
+# (camera, rays, objects, hit points). The public API will remain same
 
 def _to_matplotlib_coords(x: float, y: float, z: float) -> Tuple[float, float, float]:
     """

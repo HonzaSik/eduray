@@ -8,8 +8,6 @@ from eduray.math import Vector
 from eduray.shading.helpers import in_shadow, light_dir_dist
 from eduray.scene.scene import Scene
 
-
-
 class BlinnPhongShader(LocalShading):
     """
     Blinn-Phong shader extended on material sample with support for normal perturbation.

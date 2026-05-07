@@ -8,7 +8,6 @@ from enum import Enum
 import math
 from eduray.scene.scene import Scene
 
-
 def _mask_checker(v: Vertex, scale: float) -> int:
     """Classic checkerboard pattern (alternating X/Z cells)."""
     coord = v * scale

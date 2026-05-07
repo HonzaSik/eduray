@@ -29,8 +29,6 @@ class RenderLoop(ABC):
     Abstract render loop model.
     Provides basic structure for rendering with a camera, world, lights, and shading model.
     Handles progress reporting and image preview updates.
-
-    Parameters:
     - scene: Scene object containing camera, world, and lights.
     - shading_model: Optional shading model to use. Defaults to Blinn-Phong if None
     - preview_config: Optional configuration for image preview during rendering.
