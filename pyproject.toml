@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -15,7 +15,24 @@ authors = [
     { name = "Jan Šik"}
 ]
 
-keywords = ["raytracing", "rendering", "computer-graphics", "phong", "blinn phong", "shadows", "reflections", "refractions", "education", "python", "modular architecture", "visualization", "numpy", "pillow", "tqdm", "jupyter", "ipywidgets", "matplotlib", "eduray"]
+keywords = [
+    "raytracing",
+    "rendering",
+    "computer-graphics",
+    "phong",
+    "blinn-phong",
+    "shadows",
+    "reflections",
+    "refractions",
+    "education",
+    "python",
+    "visualization",
+    "numpy",
+    "pillow",
+    "jupyter",
+    "matplotlib",
+    "eduray"
+]
 
 classifiers = [
     "Development Status :: 3 - Alpha",
