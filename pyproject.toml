@@ -52,6 +52,7 @@ dependencies = [
     "ipywidgets>=8.1.0",
     "imageio>=2.30.0",
     "matplotlib~=3.10.6",
+    "ipykernel>=6.29",
 ]
 
 [project.optional-dependencies]

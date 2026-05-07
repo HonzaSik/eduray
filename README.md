@@ -63,10 +63,17 @@ source .venv/bin/activate
 
 # Option A: Library only — for use in IDEs like PyCharm or VS Code
 pip install -e .
+# You need to set your interpreter to the virtual environment you just created for the editable install to work in your IDE.
 
 # Option B: Library + Jupyter — for running educational notebooks in the browser
 pip install -e ".[all]"
 ```
+
+- **PyCharm**: `Settings → Project → Python Interpreter → Add Interpreter
+  → Add Local → Virtualenv → Existing`, then select
+  `<repo>/.venv/bin/python` (macOS/Linux) or `<repo>\.venv\Scripts\python.exe` (Windows).
+- **VS Code**: `Cmd/Ctrl+Shift+P → Python: Select Interpreter`, pick the
+  `.venv` from this project.
 
 To run the educational notebooks in your browser, start a Jupyter server in the project directory:
 
@@ -140,3 +147,16 @@ More detailed description of the notebooks can be found in the [introduction not
 3. Continue with the editable install steps from the [Installation](#installation-and-setup) section above.
 
 ---
+
+## Troubleshooting
+
+**`ModuleNotFoundError: No module named 'eduray'` in PyCharm or VS Code**
+
+Make sure your IDE is configured to use the `.venv` you created above,
+not the system Python:
+
+- **PyCharm**: `Settings → Project → Python Interpreter → Add Interpreter
+  → Add Local → Virtualenv → Existing`, then select
+  `<repo>/.venv/bin/python` (macOS/Linux) or `<repo>\.venv\Scripts\python.exe` (Windows).
+- **VS Code**: `Cmd/Ctrl+Shift+P → Python: Select Interpreter`, pick the
+  `.venv` from this project (workspace).
