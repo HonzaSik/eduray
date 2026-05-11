@@ -1,6 +1,9 @@
 from .vector import Vector
 from numpy import sqrt
 
+# Vector forms of the law of reflection and Snell's law of refraction
+# applied to ray directions.
+
 def reflect(v: Vector, n: Vector) -> Vector:
     """
     Reflect vector v about normal n.
@@ -13,7 +16,7 @@ def reflect(v: Vector, n: Vector) -> Vector:
 
 def refract(v: Vector, n: Vector, ior_out: float, ior_in: float) -> Vector | None:
     """
-    Compute the refracted direction using Snell's law.
+    Compute the refracted direction.
 
     :param v: incident ray direction, pointing toward the surface
     :param n: outward surface normal at the intersection point

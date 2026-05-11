@@ -7,10 +7,17 @@ from eduray.geometry.geometry_hit import GeometryHit
 
 EPS = 1e-6
 
+# Ray-AABB intersection using the slab method.
+# See Kay, T. L. & Kajiya, J. T. (1986). "Ray Tracing Complex Scenes"
+
 @dataclass
 class Box(Primitive):
     """
-    Axis-aligned box defined by two opposite corners. Centered at the origin by default with corners at (-0.5, -0.5, -0.5) and (0.5, 0.5, 0.5).
+    Axis-aligned box primitive.
+
+    Intersection is computed using the slab method: the ray is intersected
+    with intervals along individual axes and the overlapping interval is used
+    as the valid hit range.
     """
 
     corner1: Vertex = field(default_factory=lambda: Vertex(-0.5, -0.5, -0.5))
@@ -93,8 +100,8 @@ class Box(Primitive):
         tmax = min(tmax, max(ty0, ty1))
 
         if abs(ray.direction.z) < EPS:
-            tz0 = (self.z0 - ray.origin.z) / ray.direction.z
-            tz1 = (self.z1 - ray.origin.z) / ray.direction.z
+            tz0 = float('-inf') if ray.origin.z < self.z0 else float('inf')
+            tz1 = float('-inf') if ray.origin.z > self.z1 else float('inf')
         else:
             tz0 = (self.z0 - ray.origin.z) / ray.direction.z
             tz1 = (self.z1 - ray.origin.z) / ray.direction.z

@@ -11,7 +11,7 @@ from eduray.math import Vector
 @dataclass
 class Sphere(Primitive):
     """
-    Sphere in 3D space defined by center, radius, and color. Centered at the origin by default with radius 0.5.
+    Sphere in 3D space defined by center, radius. Centered at the origin by default with radius 1.
     """
     center: Vertex = field(default_factory=lambda: Vertex(0, 0, 0))
     radius: float = field(default=1)
@@ -49,10 +49,11 @@ class Sphere(Primitive):
 
         # Calculate normal at the intersection point for lighting calculations
         normal = self.normal_at(hit_point)
-        if ray.direction.dot(normal) > 0.0:
-            normal = -normal
 
         front_face = ray.direction.dot(normal) < 0.0
+
+        if ray.direction.dot(normal) > 0.0:
+            normal = -normal
 
         return GeometryHit(
             dist=root,

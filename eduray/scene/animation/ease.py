@@ -1,10 +1,7 @@
 from typing import Callable
 from enum import Enum
 
-# Normalized quadratic ease-in-out based on Robert Penner's easing equations.
-# Equivalent to easeInOutQuad with b=0, c=1, d=1.
-# (http://robertpenner.com/easing/)
-# you can also implement other easing functions like easeInQuad, easeOutQuad, easeInCubic, etc. based on the same principles.
+# See, http://robertpenner.com/easing/ if you want to add more easing functions
 
 # enum of ease types
 class EaseType(Enum):
@@ -17,10 +14,13 @@ def linear(t: float) -> float:
 
 
 def ease_in_out(t: float) -> float:
-    if t < 0.5:
-        return 2 * t * t
-    else:
-        return -1 + (4 - 2 * t) * t
+    t = max(0.0, min(1.0, t))
+
+    if t <= 0.5:
+        return 0.5 * (2.0 * t) ** 2
+
+    u = 2.0 * (1.0 - t)
+    return 1.0 - 0.5 * u ** 2
 
 # You can add more easing functions as needed, such as ease_in, ease_out, etc.
 

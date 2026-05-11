@@ -8,6 +8,11 @@ from eduray.math import Vector
 from eduray.shading.helpers import in_shadow, light_dir_dist
 from eduray.scene.scene import Scene
 
+# Blinn-Phong shading model: a modification of the Phong model that uses
+# the half-vector between the light and view directions for the specular term.
+# Blinn, J. F. (1977). "Models of Light Reflection for Computer Synthesized
+# Pictures". SIGGRAPH Computer Graphics, 11(2), 192-198.
+
 class BlinnPhongShader(LocalShading):
     """
     Blinn-Phong shader extended on material sample with support for normal perturbation.
@@ -38,19 +43,16 @@ class BlinnPhongShader(LocalShading):
         l = light_direction.normalize()
 
         ndotl = n.dot(l)
+
+        #check if the light is facing the surface
         if ndotl <= 0.0:
             return Color.custom_rgb(0, 0, 0)
 
         if in_shadow(hit, light_direction, light_distance, scene=scene):
             return Color.custom_rgb(0, 0, 0)
 
-        #check if the light is facing the surface
-        ndotl = n.dot(l)
-        if ndotl <= 0.0:
-            return Color.custom_rgb(0, 0, 0)
-
         diffuse = self._lambert_from_sample(ms, n, l)
-        specular = self._blinn_specular_from_sample(ms, n, l, v) * ndotl # not accurate by blinn-phong model, but gives better results by reducing specular highlights on grazing angles
+        specular = self._blinn_specular_from_sample(ms, n, l, v)
         return (diffuse + specular) * light_intensity * light.get_color_at(hit.point)
 
     def shade_multiple_lights(self, hit: SurfaceInteraction, lights: list[Light], view_dir: Vector, scene: Scene | None = None ) -> Color:

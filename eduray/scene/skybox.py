@@ -4,8 +4,10 @@ import numpy as np
 from eduray import Color
 from eduray.math.vec3 import Vec3
 
-# Simple Radiance HDR/RGBE loader.
-# based on (Ward, "Real Pixels", Graphics Gems II, 1991), Format reference: https://www.graphics.cornell.edu/~bjw/rgbe.html
+# Reader for the Radiance HDR / RGBE image format.
+# Ward, G. (1991). "Real Pixels." In Graphics Gems II, pp. 80-83.
+# Format reference (Walter, 1995): https://www.graphics.cornell.edu/~bjw/rgbe.html
+
 def hdr_to_ndarray(path: str) -> np.ndarray:
     """
     Reads and transforms an HDR image file to a numpy ndarray of shape (H, W, 3) with float32 RGB values. Handles RLE decoding

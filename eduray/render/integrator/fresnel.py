@@ -1,6 +1,10 @@
 from eduray.math import Vector
 from eduray.math.helpers import clamp_float_01
 
+# Schlick's approximation for the Fresnel reflectance term.
+# Schlick, C. (1994). "An Inexpensive BRDF Model for Physically-based
+# Rendering". Computer Graphics Forum, 13(3), 233-246.
+
 def fresnel_schlick(ray_dir: Vector, normal: Vector, ior_out: float = 1.0, ior_in: float = 1.5) -> float:
     """
     Schlick's approximation for Fresnel reflectance.

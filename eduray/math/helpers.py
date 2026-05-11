@@ -18,12 +18,12 @@ def interpolate(a: float, b: float, t: float) -> float:
     return (1.0 - t) * a + b * t
 
 def old_perlin_fade(t: float) -> float:
-    # Old fade function as defined by Ken Perlin in "Perlin Noise" (1985) for smoother transitions.
+    """Original cubic fade curve: 3t^2 - 2t^3."""
     return t * t * (3.0 - 2.0 * t)
 
 def perlin_fade(t: float) -> float:
-    # Fade function as defined by Ken Perlin in "Improving Noise" (2002) for smoother transitions.
-    return t * t * t * (t * (t * 6 - 15) + 10)
+    """Improved quintic fade curve: 6t^5 - 15t^4 + 10t^3."""
+    return t * t * t * (t * (t * 6.0 - 15.0) + 10.0)
 
 def clamp01(x: float) -> float:
     """

@@ -11,7 +11,11 @@ from eduray.math import Vector
 @dataclass
 class Cylinder(Primitive):
     """
-    Cylinder defined by a base point, a cap point, and a radius. The base and cap points define the central axis of the cylinder.
+    Finite cylinder side surface without caps.
+
+    The intersection is computed by solving the quadratic equation for the
+    infinite cylinder around the axis and then checking whether the hit point
+    lies between the base and cap points.
     """
 
     base_point: Vertex = field(default_factory=lambda: Vertex(0, -0.5, 0))  # Center of the cylinder base
@@ -65,10 +69,10 @@ class Cylinder(Primitive):
 
         normal = self.normal_at(hit_point)
 
+        front_face = ray.direction.dot(normal) < 0.0
+
         if ray.direction.dot(normal) > 0.0:
             normal = -normal
-
-        front_face = ray.direction.dot(normal) < 0.0
 
         return GeometryHit(
             dist=root,

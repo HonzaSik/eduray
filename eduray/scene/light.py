@@ -16,7 +16,7 @@ class LightType(Enum):
     AMBIENT = "ambient"
     DIRECTIONAL = "directional"
     SPOT = "spot"
-    AREA = "area"
+    AREA = "area" # area for future extension
 
 
 @dataclass
@@ -68,7 +68,7 @@ class Light(ABC):
 @dataclass
 class PointLight(Light):
     """
-    Simple light with no falloff
+    Simple light with no falloff.
     """
     intensity: float = 1.0
     type: LightType = LightType.POINT
@@ -83,7 +83,7 @@ class PointLight(Light):
 @dataclass
 class PointLightFalloff(Light):
     """
-    Simple light with no falloff
+    Simple light with inverse square falloff.
     """
     intensity: float = 1.0
     type: LightType = LightType.POINT

@@ -6,25 +6,34 @@ from eduray.geometry.primitive import Primitive
 from eduray.geometry.ray import Ray
 from eduray.geometry.geometry_hit import GeometryHit
 
+# Ray-torus intersection by substituting the ray into the implicit torus equation.
+# Based on Hanrahan's derivation in Glassner (1989).
 
 @dataclass
 class Torus(Primitive):
     """
-    A torus object. Donut shape defined by a major radius (distance from center to tube center) and a minor radius (tube radius). Uses as example of custom Hittable implementation. in jupyter notebook.
-    The torus is centered at 'center' vertex and l
+    Circular torus primitive.
+
+    The torus is represented by the standard implicit equation. Ray intersection
+    is computed by substituting the ray equation into the implicit equation,
+    which gives a quartic polynomial in the ray parameter t. The real roots are
+    found numerically with numpy.roots, and the nearest valid root is used.
+
+    The intersection method follows the standard ray/torus derivation described
+    by Hanrahan in Glassner, An Introduction to Ray Tracing, 1989.
     """
     center: Vertex = field(default_factory=lambda: Vertex(0, 0, 0))
     radius_major: float = 1.0  # Major radius (distance from center to tube center)
     radius_tube: float  = 0.2  # Minor radius (tube radius)
 
     def normal_at(self, point: Vertex) -> Vector:
-        local_hit = point - self.center
-        nx = 4 * local_hit.x * (
-                local_hit.x ** 2 + local_hit.y ** 2 + local_hit.z ** 2 - self.radius_major ** 2 - self.radius_tube ** 2)
-        ny = 4 * local_hit.y * (
-                local_hit.x ** 2 + local_hit.y ** 2 + local_hit.z ** 2 - self.radius_major ** 2 - self.radius_tube ** 2) + 8 * self.radius_major ** 2 * local_hit.y
-        nz = 4 * local_hit.z * (
-                local_hit.x ** 2 + local_hit.y ** 2 + local_hit.z ** 2 - self.radius_major ** 2 - self.radius_tube ** 2)
+        hit = point - self.center
+        nx = 4 * hit.x * (
+                hit.x ** 2 + hit.y ** 2 + hit.z ** 2 - self.radius_major ** 2 - self.radius_tube ** 2)
+        ny = 4 * hit.y * (
+                hit.x ** 2 + hit.y ** 2 + hit.z ** 2 - self.radius_major ** 2 - self.radius_tube ** 2) + 8 * self.radius_major ** 2 * hit.y
+        nz = 4 * hit.z * (
+                hit.x ** 2 + hit.y ** 2 + hit.z ** 2 - self.radius_major ** 2 - self.radius_tube ** 2)
         return Vector(nx, ny, nz).normalize()
 
     def intersect(self, ray: Ray, t_min=1e-3, t_max=float('inf')) -> GeometryHit | None:

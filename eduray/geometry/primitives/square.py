@@ -4,12 +4,11 @@ from eduray.geometry.primitive import Primitive
 from eduray.geometry.ray import Ray
 from eduray.geometry.geometry_hit import GeometryHit
 from .triangle import Triangle
-import random
 
 
 class Square(Primitive):
     """
-    Square in 3D space defined by four vertices and material.
+    Square in 3D space defined by four vertices.
     The square is composed of two triangles for intersection calculations.
     Default square can not be scaled by Z because it is defined in the XY plane, but it can be created with custom vertices to allow scaling in Z direction.
     """
@@ -53,16 +52,6 @@ class Square(Primitive):
         if hit1 and hit2:
             return hit1 if hit1.dist < hit2.dist else hit2
         return hit1 or hit2
-
-    # for later implementation of area light source sampling.
-    def random_point(self) -> Vertex:
-        u = random.uniform(0, 1)
-        v = random.uniform(0, 1)
-        if u + v > 1:
-            u = 1 - u
-            v = 1 - v
-        point = self.v0 + (self.v1 - self.v0) * u + (self.v3 - self.v0) * v
-        return point
 
     def normal_at(self, point: Vertex) -> Vector:
         # Normal is the same for both triangles

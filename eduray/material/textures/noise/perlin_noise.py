@@ -9,31 +9,32 @@ perm = list(range(256))
 # shuffle the permutation table to get pseudo-random gradients
 random.shuffle(perm)
 
-# Educational implementation following the common structure of improved
-# Perlin noise: permutation table, gradient hashing, fade function,
-# and interpolation between cube corners. See Perlin (2002).
-# This Perlin noise implementation is based on Perlin's reference C code:
-# https://mrl.cs.nyu.edu/~perlin/noise/
-def _grad(h: int, x: float, y: float, z: float) -> float:
-    # reduce h to 4 bits - 16 values
-    h &= 15
-    # first 8 cases refer x, next 8 to y (axis U)
-    u = x if h < 8 else y
-    v = y if h < 4 else (x if h in (12, 14) else z)
-    # final gradient value is a combination of the two axes with signs directed by bits 0 and 1 of h
-    return (u if (h & 1) == 0 else -u) + (v if (h & 2) == 0 else -v)
+# Educational implementation of improved Perlin noise following the
+# algorithmic principles described by Perlin (2002): permutation
+# hashing, gradient selection, a quintic fade function, and
+# interpolation of corner contributions within the unit cube.
+# Reference: https://cs.nyu.edu/~perlin/noise/
+_GRAD_IMP = [
+    ( 1,  1,  0), (-1,  1,  0), ( 1, -1,  0), (-1, -1,  0),
+    ( 1,  0,  1), (-1,  0,  1), ( 1,  0, -1), (-1,  0, -1),
+    ( 0,  1,  1), ( 0, -1,  1), ( 0,  1, -1), ( 0, -1, -1),
+]
+
+
+def _grad_imp(h: int, x: float, y: float, z: float) -> float:
+    gx, gy, gz = _GRAD_IMP[h % len(_GRAD_IMP)]
+    return gx * x + gy * y + gz * z
 
 
 @dataclass
 class PerlinNoise(Noise):
     """
-    Perlin noise implementation based on Ken Perlin's 2002 algorithm. This implementation generates smooth, continuous noise values in 3D space.
-     - Uses a permutation table to generate pseudo-random gradients at the corners of the unit cube containing the point.
-     - The noise value is computed by blending the contributions from the corners based on the point's location within the cube and a fade function for smooth transitions.
-     - The output is a value in the range [-1, 1] that can be used for procedural texturing and other applications.
-     - The permutation table is duplicated to avoid overflow in gradient lookups, allowing for seamless tiling of the noise pattern.
-     - The fade function used is a quintic polynomial that provides smoother transitions between grid points compared to a simple linear fade.
-     - This implementation is designed for 3D noise but can be adapted for 2D or 4D by modifying the gradient function and input parameters accordingly.
+    Educational implementation of improved Perlin noise following the algorithmic
+    principles described by Perlin (2002). The implementation uses a permutation
+    table, gradient selection, a quintic fade function, and interpolation of
+    corner contributions within a unit cube.
+
+    Implemented for the object-oriented interface of the eduray library.
     """
     #for speed, we duplicate the permutation list
     perm: list[int] = field(default_factory=lambda: perm + perm)
@@ -64,14 +65,14 @@ class PerlinNoise(Noise):
         BB = self.perm[B + 1] + Z
 
         # gets how much each corner contributes to the final value based on the gradient and the location in the cube
-        g000 = _grad(self.perm[AA], x, y, z)
-        g100 = _grad(self.perm[BA], x - 1, y, z)
-        g010 = _grad(self.perm[AB], x, y - 1, z)
-        g110 = _grad(self.perm[BB], x - 1, y - 1, z)
-        g001 = _grad(self.perm[AA + 1], x, y, z - 1)
-        g101 = _grad(self.perm[BA + 1], x - 1, y, z - 1)
-        g011 = _grad(self.perm[AB + 1], x, y - 1, z - 1)
-        g111 = _grad(self.perm[BB + 1], x - 1, y - 1, z - 1)
+        g000 = _grad_imp(self.perm[AA], x, y, z)
+        g100 = _grad_imp(self.perm[BA], x - 1, y, z)
+        g010 = _grad_imp(self.perm[AB], x, y - 1, z)
+        g110 = _grad_imp(self.perm[BB], x - 1, y - 1, z)
+        g001 = _grad_imp(self.perm[AA + 1], x, y, z - 1)
+        g101 = _grad_imp(self.perm[BA + 1], x - 1, y, z - 1)
+        g011 = _grad_imp(self.perm[AB + 1], x, y - 1, z - 1)
+        g111 = _grad_imp(self.perm[BB + 1], x - 1, y - 1, z - 1)
 
         # blend all contributions together by interpolating along each axis
         # from 8->4

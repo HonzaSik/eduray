@@ -7,6 +7,9 @@ from eduray.scene.scene import Scene
 from eduray.math import Vector
 from .local_shading import LocalShading
 
+# Simple Lambertian diffuse shader.
+# Uses the cosine term max(0, n·l), as described in standard computer graphics texts.
+
 class LambertShader(LocalShading):
     def shade(
         self,

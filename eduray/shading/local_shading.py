@@ -9,6 +9,10 @@ from eduray.scene.surface_interaction import SurfaceInteraction
 from eduray.scene.light import Light
 from eduray.math import Vector
 
+# Normal perturbation via noise gradient (procedural bump mapping).
+# Blinn, J. F. (1978). "Simulation of wrinkled surfaces."
+# SIGGRAPH Comput. Graph., 12(3), 286-292.
+
 def apply_noise_normal_perturbation(
     hit: SurfaceInteraction,
     noise: Noise | None,
@@ -26,12 +30,12 @@ def apply_noise_normal_perturbation(
     eps = getattr(noise, "eps", 1e-3)
     inv_eps = 1.0 / eps
 
+    # normal of the hit point, used as the base for perturbation
+    p = hit.point
+
     # Compute the tangent and bitangent vectors for the normal.
     n = vec.normalize()
     tangent, bitangent = tangent_basis(n)
-
-    # normal of the hit point, used as the base for perturbation
-    p = hit.point
 
     # Find the noise values at the hit point and at small offsets in the tangent and bitangent directions. These values will be used to compute the noise gradient.
     h0 = noise.value(p * scale)
@@ -42,7 +46,7 @@ def apply_noise_normal_perturbation(
     dht = (ht - h0) * inv_eps
     dhb = (hb - h0) * inv_eps
 
-    # Modify normal and normalize the result.
+    # Modify normal and normalize the result and strength of the perturbation is determined by the noise's strength property.
     return (n - tangent * (strength * dht) - bitangent * (strength * dhb)).normalize()
 
 

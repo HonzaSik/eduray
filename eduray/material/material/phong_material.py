@@ -5,6 +5,8 @@ from eduray.material.material.material import Material
 from eduray.material.material.material_sample import MaterialSample
 from eduray.material.textures.noise.noise import Noise
 
+# Material parameters used by Phong/Blinn-Phong style shading.
+# The actual lighting model is implemented in shader classes.
 
 @dataclass
 class PhongMaterialSample(MaterialSample):

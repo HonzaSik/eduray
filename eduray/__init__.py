@@ -24,7 +24,7 @@ from .scene import (
 from .material import (
     Color, PhongMaterial, RockMaterial, CheckerMaterial, MarbleMaterial,
     # noise types
-    PerlinNoise, FBMNoise, TurbulenceNoise, VoronoiNoise,
+    PerlinNoise, FBMNoise, TurbulenceNoise,
     # procedural textures
 )
 
@@ -45,8 +45,7 @@ from .render import (
 # Input/output utilities, including resolution handling and Jupyter notebook display functions PickleManager for saving/loading scenes, and libraries for colors, materials, and lights
 from .io import (
     Resolution,
-    ipynb_display_images, ipynb_display_multiple_images_in_row,
-    ColorLibrary, MaterialLibrary, LightLibrary, PickleManager,
+    ipynb_display_images, ipynb_display_multiple_images_in_row
 )
 
 __all__ = [
@@ -60,7 +59,7 @@ __all__ = [
     "Animator", "AnimationSetup", "EaseType", "Easing", "linear", "ease_in_out",
     # Materials & textures
     "Color", "PhongMaterial", "RockMaterial", "CheckerMaterial", "MarbleMaterial",
-    "PerlinNoise", "FBMNoise", "TurbulenceNoise", "VoronoiNoise",
+    "PerlinNoise", "FBMNoise", "TurbulenceNoise",
     # Shading
     "BlinnPhongShader",
     "DepthShader", "NormalShader", "DiffShader", "DotProductShader", "MaskMethod",
@@ -70,5 +69,4 @@ __all__ = [
     # IO & resolution
     "Resolution",
     "ipynb_display_images", "ipynb_display_multiple_images_in_row",
-    "ColorLibrary", "MaterialLibrary", "LightLibrary", "PickleManager",
 ]

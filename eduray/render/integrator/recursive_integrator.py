@@ -12,6 +12,11 @@ from eduray.shading.blinn_phong_shader import BlinnPhongShader
 from eduray.render.integrator.fresnel import fresnel_schlick
 from eduray.shading.local_shading import LocalShading, apply_noise_normal_perturbation
 
+# Recursive integrator implementing Whitted-style ray tracing with
+# reflection, refraction (Snell's law) and a Schlick-approximated Fresnel term.
+# Whitted, T. (1980). "An improved illumination model for shaded
+# display." Commun. ACM, 23(6), 343-349.
+
 @dataclass
 class RecursiveIntegrator(Integrator):
     max_depth: int
