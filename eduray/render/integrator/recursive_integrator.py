@@ -125,7 +125,7 @@ class RecursiveIntegrator(Integrator):
 
     @staticmethod
     def _fresnel(ray: Ray, n_shade: Vector, material: Material) -> float:
-        # Schlick's approximation, with air assumed on the outside
+        # Schlick's approximation, with air assumed on the outside for educational simplicity.
         ior_m = material.get_ior()
         front_face = n_shade.dot(ray.direction) < 0.0
         n = n_shade if front_face else -n_shade

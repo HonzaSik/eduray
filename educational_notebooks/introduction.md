@@ -12,19 +12,18 @@ While going through the notebooks, try to experiment with the code and modify it
 
 Some things to keep in mind:
 
-- Python is used for the implementation, but the main concepts can be applied in other programming languages as well.
-- The code in the notebooks is written mainly for clarity and educational value, not for performance. The goal is to understand how ray tracing works and how its main parts fit together, not to create a highly optimized renderer.
+- The code in the notebooks is written mainly for clarity and educational value, not for performance. The goal is to understand how ray tracing works and how its main parts fit together, not to create a highly optimized rendering software.
 
 
 ## Notebooks in this series
 
 1. **Data and visualizer** — color, image, coordinate system
-2. **Camera and render loop** — pinhole camera, ray generation, traversal
-3. **Intersections and geometry** — sphere, plane, transformations, implicit surfaces
-4. **Materials, shaders and lights** — Phong, Blinn–Phong, ambient/diffuse/specular
+2. **Camera and render loop** — pinhole camera, ray generation, render loops, progress display
+3. **Intersections and geometry** — sphere, plane, transformations, implicit surfaces, object definitions
+4. **Materials, shaders and lights** —  Phong, Blinn–Phong, ambient/diffuse/specular components, lights
 5. **Integrators - recursion, refraction, reflection** — Whitted-style ray tracing, Fresnel, Snell's law, recursive ray tracing
 6. **Noise and procedural textures** — Perlin, fBM, turbulence, normal perturbation, procedural patterns
-7. **Final scene** — Sandbox scene with various objects, materials, and lights to not start from scratch.
+7. **Final scene** — Sandbox scene with various objects, materials, and lights for further experimentation and starting point for experiments and using the library as render software.
 8. **Bonus: Other** — In folder other are notebooks showcasing some additional features like post processing and video rendering using EduRay.
 
 Notebooks build on each other and are intended to be read in order.
@@ -33,9 +32,11 @@ Notebooks build on each other and are intended to be read in order.
 ## Cheat sheet: how to use this library
 
 #### Importing from the library:
-- `from eduray import *` to import all the necessary classes and functions or better
-- `from eduray.internals import *` to import the internals
+- `from eduray import` to import classes and functions from the main API
+- `from eduray.internals import` to import the internal classes and functions, which are not part of the public API but are used in the notebooks for educational purposes and visualisation.
 
+
+> Note: The main documentation of EduRay is provided through the educational Jupyter notebooks. These notebooks introduce the library step by step and show how its classes, methods, and rendering components are used in practice. This is intentional: many parts of the library are easiest to understand when they are shown directly in context, together with small scenes, visualizations, and experiments. The final demo notebook is intended as a practical sandbox for users who want to create their own scenes and experiments.
 ---
 # Configuration Classes
 

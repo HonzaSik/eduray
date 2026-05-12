@@ -26,7 +26,8 @@ class Triangle(Primitive):
 
     def intersect(self, ray: Ray, t_min=0.001, t_max=float('inf')) -> GeometryHit | None:
         """
-        Möller–Trumbore ray-triangle intersection algorithm implementation.
+        Triangle primitive using the Möller-Trumbore ray-triangle intersection test.
+        The code follows the standard barycentric-coordinate formulation and is adapted
         :param ray: Ray to test intersection with
         :param t_min: minimum valid distance for intersection
         :param t_max: maximum valid distance for intersection

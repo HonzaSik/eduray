@@ -42,7 +42,9 @@ You can install the package from PyPI without the notebooks as rendering and vis
 pip install eduray
 ```
 
-Or clone the repository to use the educational notebooks and install the package in editable mode:
+### Recommended for educational use and for learning how to adapt the library
+
+Clone the repository to use the educational notebooks and install all dependencies. The project uses `pyproject.toml` for dependency management, so the required dependencies can be installed with `pip`.
 
 ```bash
 git clone https://github.com/HonzaSik/eduray.git
@@ -122,6 +124,12 @@ The notebooks explain selected ray tracing concepts step by step, including:
 - visualization of ray tracing concepts
 
 More detailed description of the notebooks can be found in the [introduction notebook](educational_notebooks/introduction.md).
+
+## Documentation approach
+EduRay does not provide a separate generated API documentation. Instead, the main user-facing documentation is provided through the educational Jupyter notebooks. The notebooks introduce the library step by step and show how its classes, methods, and rendering components are used in practice.
+
+This approach fits the educational purpose of the project, because many parts of the library are best explained in context: by defining objects, modifying parameters, rendering scenes, and observing the results directly. Users who want to experiment with the library can use the final demo notebook as a practical sandbox for creating their own scenes.
+
 
 ---
 

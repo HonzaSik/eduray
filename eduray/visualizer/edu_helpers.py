@@ -6,7 +6,25 @@ from eduray import Color
 import matplotlib.colors as mcol
 import random
 
-random.seed(42)  # for reproducibility
+
+COL_MAP = mcol.LinearSegmentedColormap.from_list("noise", [
+    (0.0, "#000000"),
+    (0.25, "#0000ff"),
+    (0.5, "#00ffff"),
+    (0.75, "#ffff00"),
+    (1.0, "#ff0000"),
+])
+
+# create a random permutation table for consistent noise generation
+_perm_table = list(range(256))
+random.shuffle(_perm_table)
+# duplicate it to avoid overflow in permutation lookups
+PERM = _perm_table + _perm_table
+
+COLS = 10
+ROWS = 8
+RES = 100
+SCALE = 0.45
 
 black = Color.linear_rgb(0.0, 0.0, 0.0)
 white = Color.linear_rgb(1.0, 1.0, 1.0)
@@ -43,26 +61,6 @@ def set_pixel_color(image: Image, x: int, y: int, color: Color) -> None:
     pixels, width, height = image
     if 0 <= x < width and 0 <= y < height:
         pixels[y * width + x] = color
-
-
-COL_MAP = mcol.LinearSegmentedColormap.from_list("noise", [
-    (0.0, "#000000"),
-    (0.25, "#0000ff"),
-    (0.5, "#00ffff"),
-    (0.75, "#ffff00"),
-    (1.0, "#ff0000"),
-])
-
-# create a random permutation table for consistent noise generation
-_perm_table = list(range(256))
-random.shuffle(_perm_table)
-# duplicate it to avoid overflow in permutation lookups
-PERM = _perm_table + _perm_table
-
-COLS = 10
-ROWS = 8
-RES = 100
-SCALE = 0.45
 
 
 def sample_grid(noise_fn):

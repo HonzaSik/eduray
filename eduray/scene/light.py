@@ -33,12 +33,8 @@ class Light(ABC):
     def intensity_at(self, point: Vertex) -> float:
         """
         Calculate the illumination at a given point from this light source.
-
-        Args:
-            point (Vertex): The point in the scene to be illuminated.
-
-        Returns:
-            float: The intensity of light at the given point.
+        :param point: The point in the scene to calculate illumination for.
+        :return: The intensity of the light at the given point.
         """
         pass
 
@@ -46,21 +42,15 @@ class Light(ABC):
     def get_color_at(self, point: Vertex) -> Color:
         """
         Get the color of the light at a given point in the scene.
-
-        Args:
-            point (Vertex): The point in the scene to get the light color for.
-
-        Returns:
-            Color: The color of the light at the given point.
+        :param point: The point in the scene to get the light color for.
+        :return: The color of the light at the given point.
         """
         pass
 
     def translate(self, translation: Vector) -> None:
         """
         Translate the light's position by a given vector.
-
-        Args:
-            translation (Vertex): The vector by which to translate the light.
+        :param translation: The vector by which to translate the light's position.
         """
         self.position += translation
 
@@ -133,6 +123,10 @@ class DirectionalLight(Light):
 
 @dataclass
 class SpotLight(Light):
+    """
+    Spotlight with a position, direction, and cutoff angle. Intensity falls off
+    based on the angle between the light direction and the direction to the point.
+    """
     position: Vertex = field(default_factory=lambda: Vertex(0.0, 0.0, 0.0))
     direction: Vector = field(default_factory=lambda: Vector(0.0, -1.0, 0.0))
     angle: float = pi / 6

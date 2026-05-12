@@ -11,6 +11,10 @@ from .local_shading import LocalShading
 # Uses the cosine term max(0, n·l), as described in standard computer graphics texts.
 
 class LambertShader(LocalShading):
+    """
+    A simple Lambertian diffuse shader that calculates the color based
+    on the cosine of the angle between the surface normal and the light direction.
+    """
     def shade(
         self,
         hit: SurfaceInteraction,

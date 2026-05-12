@@ -9,6 +9,10 @@ from eduray.shading.color_shader import ColorShader
 
 @dataclass
 class RayCaster(Integrator):
+    """
+    A simple ray casting integrator that computes the color of a ray by finding the first intersection
+    with the scene and applying a local shading model.
+    """
     scene: Scene
     shader: LocalShading | None = None
 

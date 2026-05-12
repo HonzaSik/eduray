@@ -14,7 +14,7 @@ class RidgeNoise(Noise):
      - octaves: Number of noise layers to combine
      - lacunarity: Frequency multiplier for each octave (default 2.0 means each octave has double the frequency of the previous one)
      - gain: Amplitude multiplier for each octave (default 0.5 means each octave has half the amplitude of the previous one)
-     The final noise value is a weighted sum of the octaves, normalized to roughly [0, 1] and then scaled by the strength property from the Noise base class.
+     The final noise value is a weighted sum of the octaves and then scaled by the strength property from the Noise base class.
      Key idea: n = 1.0 - abs(n) creates ridges where the original noise had peaks, and squaring it sharpens those ridges.
      This type of noise is often used for generating terrain with pronounced features like mountains and valleys.
     """

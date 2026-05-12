@@ -7,9 +7,9 @@ from eduray.math.vertex import Vertex
 class Noise(ABC):
     """
     Abstract base class for procedural noise textures.
-    scale: A scaling factor applied to the input coordinates before sampling the noise function.
-    offset: A vector added to the input coordinates before sampling the noise function, allowing for shifting the noise pattern in space.
-    strength: A multiplier applied to the final noise value, controlling the intensity of the noise effect.
+    scale: Scaling factor intended for transforming input coordinates before sampling.
+    offset: Optional coordinate offset that concrete noise implementations may use to shift the noise pattern.
+    strength: Controls the strength of the effect, for example the amplitude of normal perturbation in bump mapping.
     eps: A small epsilon value used to prevent issues with floating-point precision when sampling the noise function, especially for functions that may have discontinuities
     """
     scale: float = 1.0

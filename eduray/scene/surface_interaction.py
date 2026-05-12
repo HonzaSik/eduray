@@ -5,6 +5,12 @@ from eduray.material.material.material import Material
 
 @dataclass
 class SurfaceInteraction:
+    """
+    Represents the interaction of a ray with a surface, containing geometric hit information and material properties.
+     - geom: GeometryHit containing point, normal, distance, and front_face information.
+     - material: Material of the surface at the hit point.
+    Provides methods to access hit information and replace material if needed.
+    """
     geom: GeometryHit
     material: Material
 

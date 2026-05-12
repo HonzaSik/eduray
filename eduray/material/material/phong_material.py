@@ -63,7 +63,7 @@ class PhongMaterial(Material):
      - base_color: The base color of the material.
      - spec_color: The specular color of the material.
      - ambient_color: The ambient color of the material.
-     - shininess: The shininess coefficient for specular highlights. (0.0 to 256.0)
+     - shininess: The shininess coefficient for specular highlights.
      - reflectivity: The reflectivity of the material (0.0 to 1.0).
      - transparency: The transparency of the material (0.0 to 1.0).
      - ior: Index of refraction for transparent materials (default 1.5).

@@ -11,6 +11,15 @@ from eduray.scene.surface_interaction import SurfaceInteraction
 
 @dataclass
 class Scene:
+    """
+    Represents the entire 3D scene, including camera, lights, objects, and skybox.
+     - camera: The camera through which the scene is viewed.
+     - lights: A list of light sources in the scene.
+     - objects: A list of objects (geometry + material) in the scene.
+     - skybox: Optional path to a skybox HDR texture or built-in option ("black", "white", "sky").
+     Provides methods for adding/removing objects and lights, ray intersection, and camera manipulation.
+     Designed to be simple and flexible for educational purposes, with room for future optimizations like acceleration structures.
+    """
     camera: Camera
     lights: list[Light] = field(default_factory=list)
     objects: list[Object] = field(default_factory=list)
