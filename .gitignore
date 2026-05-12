@@ -11,7 +11,7 @@ notebooks/*
 *.png
 *.jpg
 *.jpeg
-*.ppmzoom
+*.ppm
 *.pkl
 *.pdf
 *.hdr

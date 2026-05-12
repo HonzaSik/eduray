@@ -28,10 +28,15 @@
 </p>
 
 ---
-
 EduRay is an educational ray tracer implemented in Python. It is designed to be simple, readable, and modular, making it suitable for learning the fundamentals of ray tracing and computer graphics.
 
 The project focuses on clarity rather than performance. It includes the source code of the ray tracer, visualization tools, example scenes, and educational Jupyter notebooks.
+
+---
+
+<p align="center">
+  <img src="examples/demo_scene.png" alt="EduRay demo scene" width="720">
+</p>
 
 ---
 # Installation and setup
